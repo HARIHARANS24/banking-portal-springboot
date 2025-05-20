@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transaction History - Monarch Bank</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f4f8;
+            color: #002147;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar-custom {
+            background-color: #002147; /* Dark Navy */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-custom a {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            margin-left: 15px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #1e90ff !important; /* Dodger Blue */
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 100px auto 60px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 33, 71, 0.15);
+            text-align: center;
+            width: 90%;
+        }
+
+        h2 {
+            color: #002147;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .table-custom {
+            border-radius: 10px;
+            overflow-x: auto;
+            box-shadow: 0 0 10px rgba(0, 33, 71, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+
+        thead th {
+            background-color: #001533; /* Dodger Blue */
+            color: #ffffff;
+            font-weight: 700;
+            padding: 15px 10px;
+            border-radius: 8px;
+        }
+
+        tbody tr {
+            background-color: #f9fbff;
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #e6f0ff;
+        }
+
+        tbody td {
+            color: #002147;
+            font-weight: 600;
+            padding: 15px 10px;
+            vertical-align: middle;
+        }
+
+        .text-success {
+            color: #28a745 !important;
+            font-weight: 700;
+        }
+
+        .text-danger {
+            color: #dc3545 !important;
+            font-weight: 700;
+        }
+
+        .custom-link {
+            color: #002147;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .custom-link:hover {
+            color: #1e90ff;
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #001533; /* Darker Blue */
+            color: white;
+            padding: 15px 0;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="#">🏛️ Monarch Bank</a>
+    <ul class="navbar-nav ml-auto d-flex flex-row">
+        <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="/transactions">Transactions</a></li>
+        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h2>Transaction History</h2>
+    <div class="table-custom">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td th:text="${transaction.id}"></td>
+                <td th:text="${transaction.type}"></td>
+                <td th:text="${transaction.amount}"
+                    th:classappend="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? 'text-success' : 'text-danger'">
+                    <span th:text="${transaction.type.contains('Transfer In') || transaction.type == 'Deposit'} ? '+$' + transaction.amount : '-$' + transaction.amount"></span>
+                </td>
+                <td th:text="${transaction.timestamp}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="mt-4"><a href="/dashboard" class="custom-link">← Back to Dashboard</a></p>
+</div>
+
+<footer>
+    <p>© 2025 Monarch Bank. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

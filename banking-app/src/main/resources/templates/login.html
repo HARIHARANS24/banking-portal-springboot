@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Monarch Bank</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f6f9;
+            color: #001f3f;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar-custom {
+            background-color: #001f3f;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-custom a {
+            color: #ffffff !important;
+        }
+
+        .navbar-custom .navbar-brand {
+            font-weight: bold;
+        }
+
+        .navbar-custom .social-icons a {
+            color: #ffffff;
+            margin-left: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-custom .social-icons a:hover {
+            color: #ffc107;
+        }
+
+        .container {
+            max-width: 450px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            text-align: center;
+        }
+
+        .container h2 {
+            color: #001f3f;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group label {
+            color: #001f3f;
+            text-align: left;
+            display: block;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            border: 1px solid #001f3f;
+            background-color: #fff;
+            color: #001f3f;
+        }
+
+        .form-group input:focus {
+            border-color: #ffc107;
+            box-shadow: 0 0 5px #ffc107;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #001f3f;
+            border: none;
+            color: #ffc107;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ffc107;
+            color: #001f3f;
+        }
+
+        .custom-link {
+            color: #001f3f;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .custom-link:hover {
+            color: #ffc107;
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #001f3f;
+            color: white;
+            padding: 15px 0;
+            font-size: 14px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffc107;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <a class="navbar-brand" href="#">🏛️ Monarch Bank</a>
+</nav>
+
+<div class="container">
+    <h2 class="text-center">Login</h2>
+    <form method="post" action="/login">
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" class="form-control" name="username" required />
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" class="form-control" name="password" required />
+        </div>
+        <button type="submit" class="btn btn-block">Login</button>
+    </form>
+    <p class="text-center mt-3">Don't have an account? <a href="/register" class="custom-link">Register here</a></p>
+
+    <div th:if="${param.error}" class="alert alert-danger mt-3 text-center">
+        Invalid username or password.
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2025 Monarch Bank. All rights reserved. | <a href="#" class="custom-link">Privacy Policy</a> | <a href="#" class="custom-link">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>
