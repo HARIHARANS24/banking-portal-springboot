@@ -12,7 +12,7 @@ A modern banking portal application built with Spring Boot, providing secure and
 - User Profile Management
  
 ## 🛠 Technologies Used 
-- Java 17
+- Java 17 
 - Spring Boot
 - Spring Security
 - Spring Data JPA
