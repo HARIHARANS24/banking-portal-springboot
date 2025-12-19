@@ -6,7 +6,7 @@ A modern banking portal application built with Spring Boot, providing secure and
 - User Authentication and Authorization 
 - Account Management
 - Transaction Processing 
-- Secure Banking Operations
+- Secure Banking Operations 
 - Real-time Balance Updates   
 - Transaction History
 - User Profile Management 
